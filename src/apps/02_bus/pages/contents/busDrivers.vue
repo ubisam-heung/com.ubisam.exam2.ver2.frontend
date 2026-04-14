@@ -86,7 +86,7 @@
       <v-dialog v-model="dialog" persistent width="800">
         <v-card
           prepend-icon="mdi-update"
-          :title="$t('contents.busDrivers.title')"
+          :title="$t('frontend.contents.busDrivers.title')"
           :subtitle="editForm.busDriverName"
         >
           <v-card-text>

@@ -93,8 +93,8 @@
       <v-dialog v-model="dialog" persistent width="800">
         <v-card
           prepend-icon="mdi-update"
-          :title="$t('contents.buses.title')"
-          :subtitle="editForm.name"
+          :title="$t('frontend.contents.buses.title')"
+          :subtitle="editForm.busNumber"
         >
           <v-card-text>
             <v-form validate-on="eager" @update:model-value="dialogValidate">
