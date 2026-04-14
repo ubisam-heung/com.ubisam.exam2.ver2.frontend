@@ -135,7 +135,13 @@ services:
       
       io.u2ware.common.stomp.url: ws://stomp-web:8080/stomp
       io.u2ware.common.stomp.subscriptions.sessions: /topic/sessions
-      io.u2ware.common.stomp.subscriptions.others: /topic/others
+      io.u2ware.common.stomp.subscriptions.repairs: /topic/repairs
+
+      spring.datasource.driver-class-name: org.postgresql.Driver
+      spring.datasource.url: jdbc:postgresql://oauth2-db:5432/oauth2-db
+      spring.datasource.username: oauth2-db
+      spring.datasource.password: oauth2-db
+      spring.jpa.properties.hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
 
     depends_on:
       stomp-web :
@@ -157,8 +163,8 @@ services:
       - "3000:8080"
 
     environment:
-      vue.env.VITE_EXAMPLE_SERVER: http://localhost:8080
+      vue.env.VITE_BUS_SERVER: http://localhost:8080
       vue.env.VITE_OAUTH2_SERVER: http://localhost:9020
       vue.env.VITE_STOMP_SERVER: http://localhost:9030
-      vue.env.VITE_STOMP_DESTINATION: /topic/sessions
+      vue.env.VITE_STOMP_DESTINATION: /topic/repairs
 
