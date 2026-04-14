@@ -31,24 +31,27 @@
 
     "frontend" : {
         "index" : {
-            "title" : "U2ware Examples",
+            "title" : "U2ware Bus",
             "start" : "시작하기"
         },
         "contents" : {
-            "bar" : {
+            "topic" : {
                 "title" : "Contents :: "
             },
-            "foos" : {
-                "title" : "Foos"
+            "busDrivers" : {
+                "title" : "Bus Drivers"
             },
-            "bars" : {
-                "title" : "Bars"
+            "buses" : {
+                "title" : "Buses"
             },
-            "items" : {
-                "title" : "Items"
+            "busRoutes" : {
+                "title" : "Bus Routes"
             },
-            "sessions" : {
-                "title" : "Sessions"
+            "busStops" : {
+                "title" : "Bus Stops"
+            },
+            "repairs" : {
+                "title" : "Repairs"
             },
             "accounts" : {
                 "title" : "Accounts"
@@ -124,7 +127,7 @@
         },
 
         "after" : {
-            "create" : "생성 되였습니다.",
+            "create" : "생성 되었습니다.",
             "read"   : "상세보기 ",
             "update" : "수정 되었습니다.",
             "delete" : "삭제 되었습니다",

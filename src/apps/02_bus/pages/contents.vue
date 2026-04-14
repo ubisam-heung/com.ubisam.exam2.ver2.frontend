@@ -34,12 +34,13 @@
       <v-list nav>
         <v-list-subheader>API</v-list-subheader>
         <v-divider></v-divider>
-        <v-list-item to="/contents/foos"> {{ $t("frontend.contents.foos.title") }}</v-list-item>
-        <v-list-item to="/contents/bars"> {{ $t("frontend.contents.bars.title") }} </v-list-item>
-        <v-list-item to="/contents/items"> {{ $t("frontend.contents.items.title") }} </v-list-item>
+        <v-list-item to="/contents/buses"> {{ $t("frontend.contents.buses.title") }}</v-list-item>
+        <v-list-item to="/contents/busDrivers"> {{ $t("frontend.contents.busDrivers.title") }} </v-list-item>
+        <v-list-item to="/contents/busRoutes"> {{ $t("frontend.contents.busRoutes.title") }} </v-list-item>
+        <v-list-item to="/contents/busStops"> {{ $t("frontend.contents.busStops.title") }} </v-list-item>
         <v-divider></v-divider>
         <v-list-subheader v-if="isAdmin">Stomp</v-list-subheader>
-        <v-list-item v-if="isAdmin" to="/contents/sessions"> {{ $t("frontend.contents.sessions.title") }} </v-list-item>
+        <v-list-item v-if="isAdmin" to="/contents/repairs"> {{ $t("frontend.contents.repairs.title") }} </v-list-item>
         <v-divider></v-divider>
         <v-list-subheader v-if="isAdmin">Accounts</v-list-subheader>
         <v-list-item v-if="isAdmin" to="/contents/accounts">{{ $t("frontend.contents.accounts.title") }}</v-list-item>
@@ -55,7 +56,7 @@
 <script>
 const x = "[/contents]";
 import $oauth2Server from "@@/assets/apis/oauth2-server";
-import $exampleServer from "@@/assets/apis/example-server";
+import $busServer from "@@/assets/apis/bus-server";
 import $common from "@@/assets/stores/common";
 
 export default {
@@ -99,14 +100,14 @@ export default {
 
   mounted() {
 
-    $exampleServer.oauth2
+    $busServer.oauth2
       .userinfo("ROLE_ADMIN")
       .then((r) => {
         console.log(x, "mounted()", 1, r);
         $common.computed.userinfo.set(r);
         this.username = r.username;
         this.isAdmin = r["ROLE_ADMIN"];
-        return $exampleServer.oauth2.available();
+        return $busServer.oauth2.available();
       })
       .then((r) => {
         console.log(x, "mounted()", 2, r);
@@ -118,7 +119,7 @@ export default {
         console.log(x, "mounted()", 3, r);
         $common.computed.userinfo.set(undefined);
         return $oauth2Server.oauth2.logout().then(()=>{
-          // this.$router.push(`/`);
+          this.$router.push(`/`);
         })
       });
   },
