@@ -113,6 +113,17 @@
                 variant="outlined"
               ></v-text-field>
 
+              <v-select
+                class="ma-2"
+                multiple
+                chips
+                v-model="editForm.busType"
+                label="busType"
+                placeholder="busType"
+                variant="outlined"
+                :items="['간선', '지선', '순환', '광역', '마을']"
+              ></v-select>
+
              <entity-field
                 class="ma-2"
                 v-model="selectedBusRoute"
@@ -148,6 +159,15 @@
                 chips
               >
               </entity-field>
+
+              <entity-collections
+                v-if="!isNew"
+                class="ma-2"
+                :disabled="true"
+                v-model="editForm.busRepairHistory"
+                :item-headers="busRepairHistoryItemsHeader"
+              >
+              </entity-collections>
 
               <!-- 
               /////////////////////////////
@@ -220,6 +240,7 @@ export default {
       headers: [
         { key: "id", title: "id", align: "start" },
         { key: "busNumber", title: "Number", align: "center" },
+        { key: "busType", title: "Type", align: "center" },
         { key: "busRoute", title: "Route", align: "end" },
         { key: "busDriver", title: "Driver", align: "end" },
       ],
@@ -228,6 +249,7 @@ export default {
       initForm: {
         id: undefined,
         busNumber: undefined,
+        busType: [],
         busRoute: undefined,
         busRouteName: undefined,
         busDriver: undefined,
@@ -246,6 +268,12 @@ export default {
     busDriverItemsValue : "id",
     busDriverItemsTitle : "busDriverName",
     busDriverItemsLoading : false,
+
+    busRepairHistoryItemsHeader : [
+      { key: "busRepairName", title: "Name", align: "start", width:"30%" },
+      { key: "busRepairState", title: "State", align: "center", width:"30%" },
+      { key: "busRepairTimeStamp", title: "Timestamp", align: "end", width:"30%" },
+    ],
   }),
 
   watch: {
