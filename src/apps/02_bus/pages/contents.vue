@@ -39,11 +39,17 @@
         <v-list-item to="/contents/busRoutes"> {{ $t("frontend.contents.busRoutes.title") }} </v-list-item>
         <v-list-item to="/contents/busStops"> {{ $t("frontend.contents.busStops.title") }} </v-list-item>
         <v-divider></v-divider>
-        <v-list-subheader v-if="isAdmin">Stomp</v-list-subheader>
+
+        <!-- <v-list-subheader v-if="isAdmin">Stomp</v-list-subheader>
         <v-list-item v-if="isAdmin" to="/contents/repairs"> {{ $t("frontend.contents.repairs.title") }} </v-list-item>
         <v-divider></v-divider>
         <v-list-subheader v-if="isAdmin">Accounts</v-list-subheader>
-        <v-list-item v-if="isAdmin" to="/contents/accounts">{{ $t("frontend.contents.accounts.title") }}</v-list-item>
+        <v-list-item v-if="isAdmin" to="/contents/accounts">{{ $t("frontend.contents.accounts.title") }}</v-list-item> -->
+        <v-list-subheader>Stomp</v-list-subheader>
+        <v-list-item to="/contents/repairs"> {{ $t("frontend.contents.repairs.title") }} </v-list-item>
+        <v-divider></v-divider>
+        <v-list-subheader>Accounts</v-list-subheader>
+        <v-list-item to="/contents/accounts">{{ $t("frontend.contents.accounts.title") }}</v-list-item>
       </v-list>
     </v-navigation-drawer>
 

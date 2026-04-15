@@ -51,10 +51,10 @@
         -->
         <template v-slot:item.id="{ item }">
           <v-btn
-            :disabled="userinfo.subject == item.id"
             variant="plain"
             color="primary"
             :text="item.id"
+            :disabled="userinfo.subject != item.id"
             style="text-transform: none"
             @click="readAction(item)"
           ></v-btn>
@@ -81,8 +81,8 @@
       <v-dialog v-model="dialog" persistent width="800">
         <v-card
           prepend-icon="mdi-update"
-          :title="$t('contents.users.title')"
-          :subtitle="editForm.userId"
+          :title="$t('frontend.contents.accounts.title')"
+          :subtitle="editForm.username"
         >
           <v-card-text>
             <v-form validate-on="eager" @update:model-value="dialogValidate">
@@ -92,16 +92,6 @@
               //////////////////////////
               -->
               <v-text-field
-                v-model="editForm.id"
-                :rules="[$rules.requried]"
-                label="id"
-                placeholder="id"
-                :disabled="!isNew"
-                hint="......."
-                variant="outlined"
-              ></v-text-field>
-
-              <v-text-field
                 v-model="editForm.username"
                 :rules="[$rules.requried]"
                 label="username"
@@ -109,16 +99,6 @@
                 hint="......."
                 variant="outlined"
               ></v-text-field>
-
-              <v-select
-                v-model="editForm.roles"
-                :rules="[$rules.requried]"
-                chips
-                label="Roles"
-                :items="['ROLE_USER', 'ROLE_ADMIN']"
-                multiple
-                variant="outlined"
-              ></v-select>
               <!-- 
               //////////////////////////
               # Edit Form End
@@ -140,7 +120,7 @@
 
             <v-spacer></v-spacer>
             <v-btn
-              v-if="!isNew"
+              v-if="false"
               color="error"
               text="Delete"
               variant="text"
@@ -190,7 +170,7 @@ export default {
       headers: [
         { key: "id", title: "id", align: "start" },
         { key: "username", title: "username", align: "start" },
-        { key: "roles", title: "roles", align: "end" },
+        { key: "provider", title: "provider", align: "end" },
         { key: "updated.timestamp", title: "updatedTimestamp", align: "end" },
       ],
       sortBy: [
