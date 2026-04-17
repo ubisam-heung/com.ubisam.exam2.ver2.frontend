@@ -54,7 +54,10 @@
                 "title" : "Repairs"
             },
             "accounts" : {
-                "title" : "Accounts"
+                "title" : "Every Accounts"
+            },
+            "account" : {
+                "title" : "My Account"
             }
         } 
 

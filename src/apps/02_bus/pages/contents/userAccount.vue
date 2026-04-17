@@ -3,7 +3,7 @@
     <v-card>
       <v-card-title class="d-flex align-center pe-2">
         <v-icon icon="mdi-video-input-component"></v-icon> &nbsp;
-        {{ $t("frontend.contents.accounts.title") }}&nbsp;
+        {{ $t("frontend.contents.account.title") }}&nbsp;
         <!-- 
         //////////////////////////
         // Search Field Start
@@ -54,6 +54,7 @@
             variant="plain"
             color="primary"
             :text="item.id"
+            :disabled="userinfo.subject != item.id"
             style="text-transform: none"
             @click="readAction(item)"
           ></v-btn>
@@ -80,7 +81,7 @@
       <v-dialog v-model="dialog" persistent width="800">
         <v-card
           prepend-icon="mdi-update"
-          :title="$t('frontend.contents.accounts.title')"
+          :title="$t('frontend.contents.account.title')"
           :subtitle="editForm.username"
         >
           <v-card-text>
@@ -135,7 +136,7 @@
 
 
 <script>
-const x = "[/contents/accounts]";
+const x = "[/contents/userAccounts]";
 import $busServer from "@@/assets/apis/bus-server.js";
 import $common from "@@/assets/stores/common";
 
@@ -301,7 +302,7 @@ export default {
         })
         .catch((e) => {
           console.log(x, "searchAction", 2, e);
-          // this.$router.push("/");
+          this.$router.push("/contents");
         });
     },
 

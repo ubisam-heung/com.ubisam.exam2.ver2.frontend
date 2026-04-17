@@ -40,16 +40,17 @@
         <v-list-item to="/contents/busStops"> {{ $t("frontend.contents.busStops.title") }} </v-list-item>
         <v-divider></v-divider>
 
-        <!-- <v-list-subheader v-if="isAdmin">Stomp</v-list-subheader>
+        <v-list-subheader v-if="isAdmin">Stomp</v-list-subheader>
         <v-list-item v-if="isAdmin" to="/contents/repairs"> {{ $t("frontend.contents.repairs.title") }} </v-list-item>
         <v-divider></v-divider>
-        <v-list-subheader v-if="isAdmin">Accounts</v-list-subheader>
-        <v-list-item v-if="isAdmin" to="/contents/accounts">{{ $t("frontend.contents.accounts.title") }}</v-list-item> -->
-        <v-list-subheader>Stomp</v-list-subheader>
-        <v-list-item to="/contents/repairs"> {{ $t("frontend.contents.repairs.title") }} </v-list-item>
-        <v-divider></v-divider>
-        <v-list-subheader>Accounts</v-list-subheader>
-        <v-list-item to="/contents/accounts">{{ $t("frontend.contents.accounts.title") }}</v-list-item>
+        <template v-if="isAdmin">
+          <v-list-subheader>Accounts</v-list-subheader>
+          <v-list-item to="/contents/accounts">{{ $t("frontend.contents.accounts.title") }}</v-list-item>
+        </template>
+        <template v-else>
+          <v-list-subheader>Account</v-list-subheader>
+          <v-list-item to="/contents/userAccount">{{ $t("frontend.contents.account.title") }}</v-list-item>
+        </template>
       </v-list>
     </v-navigation-drawer>
 
