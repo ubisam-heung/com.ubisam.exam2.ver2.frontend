@@ -19,6 +19,12 @@
         </template>
         <v-list nav>
           <v-list-item
+            prepend-icon="mdi-account-edit"
+            :title="$t('accounts.account.title')"
+            :to="isAdmin ? '/contents/accounts' : '/contents/userAccount'"
+          >
+          </v-list-item>
+          <v-list-item
             prepend-icon="mdi-logout"
             :title="$t('accounts.logout.title')"
             @click="logout"
