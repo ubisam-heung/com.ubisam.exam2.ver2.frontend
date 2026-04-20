@@ -90,6 +90,7 @@ export default {
       type: String,
       default: "ma-0",
     },
+
     itemHeaders: {
       type: Array,
       default: [],
@@ -152,7 +153,7 @@ export default {
       let idx = this.modelValue.findIndex((e) => e.actions == "add");
       if (idx > -1) this.modelValue.splice(idx, 1);
       this.$emit('update:modelValue', this.modelValue);
-      this.editable = false;
+      this.editable = true;
     },
 
     add(item) {
@@ -167,7 +168,7 @@ export default {
       let idx = this.modelValue.findIndex((e) => e.key == item.key);
       if (idx > -1) this.modelValue.splice(idx, 1);
       this.$emit('update:modelValue', this.modelValue);
-      this.editable = false;
+      this.editable = true;
     },
 
 
