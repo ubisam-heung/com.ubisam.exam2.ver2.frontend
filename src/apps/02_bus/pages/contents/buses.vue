@@ -166,6 +166,7 @@
                 :disabled="true"
                 v-model="editForm.busRepairHistory"
                 :item-headers="busRepairHistoryItemsHeader"
+                :item-editable="false"
               >
               </entity-collections>
 

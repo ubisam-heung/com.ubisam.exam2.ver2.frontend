@@ -95,6 +95,10 @@ export default {
       type: Array,
       default: [],
     },
+    itemEditable: {
+      type: Boolean,
+      default: true,
+    },
   },
 
   data: () => ({
@@ -108,13 +112,13 @@ export default {
     // ],
     // sortBy: [{ key: "key", order: "asc" }],
 
-    editable: false,
+    editable: true,
     validate: false,
   }),
 
   mounted() {
     console.log("mounted", this.modelValue);
-
+    this.editable = this.itemEditable;
     this.headers = this.itemHeaders.concat(
       { key: "actions", title: "Actions", align: "end", width:"20%" }
     );
