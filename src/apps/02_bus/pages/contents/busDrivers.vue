@@ -9,8 +9,22 @@
         // Search Field Start
         //////////////////////////
         -->
+        <v-select
+          class="ms-5"
+          v-model="searchForm.option"
+          density="compact"
+          :items="config.searchOptions"
+          item-title="text"
+          item-value="value"
+          label="Option"
+          variant="solo-filled"
+          flat
+          hide-details
+          single-line
+          style="max-width: 7em"
+        />
         <v-text-field
-          class="ms-10"
+          class="ms-1"
           v-model="searchForm.keyword"
           density="compact"
           label="Search"
@@ -159,7 +173,9 @@ export default {
     isNew: false,
     validate: false,
 
-    searchForm: {},
+    searchForm: {
+      keyword: '', option: 'busAll'
+    },
     editForm: {},
 
     entities: [],
@@ -173,7 +189,11 @@ export default {
         { value: 50, title: "50" },
         { value: 100, title: "100" },
       ],
-
+      searchOptions: [
+        { value: 'busAll', text: '전체' },
+        { value: 'busDriverName', text: '운전자' },
+        { value: 'busDriverLicense', text: '라이센스' }
+      ],
       /////////////////////////////////
       // Config Start
       /////////////////////////////////
