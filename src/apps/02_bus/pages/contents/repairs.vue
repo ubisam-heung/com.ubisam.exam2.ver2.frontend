@@ -77,7 +77,6 @@
 <script>
 const x = "[/contents/repairs]";
 import $busServer from "@@/assets/apis/bus-server";
-import $stompServer from "@@/assets/apis/stomp-server";
 import $common from "@@/assets/stores/common";
 
 
