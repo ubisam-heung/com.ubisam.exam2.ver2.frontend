@@ -2,8 +2,8 @@
   <v-container class="pa-4" fluid>
     <v-card>
       <v-card-title class="d-flex align-center pe-2">
-        <v-icon icon="mdi-car-wrench"></v-icon> &nbsp;
-        {{ $t("frontend.contents.repairs.title") }}&nbsp;
+        <v-icon icon="mdi-video-input-component"></v-icon> &nbsp;
+        {{ $t("frontend.contents.sessions.title") }}&nbsp;
         <!-- 
         //////////////////////////
         // Search Field Start
@@ -75,7 +75,7 @@
 </template>
 
 <script>
-const x = "[/contents/repairs]";
+const x = "[/contents/sessions]";
 import $busServer from "@@/assets/apis/bus-server";
 import $stompServer from "@@/assets/apis/stomp-server";
 import $common from "@@/assets/stores/common";
@@ -142,23 +142,23 @@ export default {
     // handle....
     ////////////////////////////////////////
     handleCreate(){
-      return $busServer.repairs.create(this.editForm);
+      return $busServer.sessions.create(this.editForm);
     },
     handleRead(entity){
-      return $busServer.repairs.read(entity);
+      return $busServer.sessions.read(entity);
     },
     handleUpdate(){
-      return $busServer.repairs.update(this.editForm);
+      return $busServer.sessions.update(this.editForm);
     },
     handleDelete(){
-      return $busServer.repairs.delete(this.editForm);
+      return $busServer.sessions.delete(this.editForm);
     },
     handleSearch(query){
-      return $busServer.repairs.search(this.searchForm, query);
+      return $busServer.sessions.search(this.searchForm, query);
     },
     handleEntities(res){
       this.entitiesTotal = res.page.totalElements;
-      this.entities = res._embedded.repairs;
+      this.entities = res._embedded.sessions;
       return res;
     },
     handleEntity(res){
@@ -367,6 +367,35 @@ export default {
         });
     },
 
+
+      messageReceived(m, p) {
+        console.log(x, "messageReceived()", m, p);
+        // this.refreshAction();
+      },
+
   },
+
+  mounted() {
+    this.subtitle = x;
+
+    $stompServer.stomp
+      .connect()
+      .then((r) => {
+        console.log(x, "mountedX()", 1, r);
+        $stompServer.stomp.subscribe("/topic/sessions", this.refreshAction);
+      })
+      .catch((r) => {
+        console.log(x, "mountedX()", 2);
+      })
+      .then((r) => {
+        console.log(x, "mountedX()", 3, r);
+        this.refreshAction();
+      });
+  
+  },
+
+  beforeUnmount() {
+    $stompServer.stomp.disconnect();
+  }
 };
 </script>

@@ -53,6 +53,9 @@
             "repairs" : {
                 "title" : "Repairs"
             },
+            "sessions" : {
+                "title" : "Sessions"
+            },
             "accounts" : {
                 "title" : "Every Accounts"
             },

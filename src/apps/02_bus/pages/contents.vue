@@ -48,6 +48,7 @@
 
         <v-list-subheader v-if="isAdmin">Stomp</v-list-subheader>
         <v-list-item v-if="isAdmin" to="/contents/repairs"> {{ $t("frontend.contents.repairs.title") }} </v-list-item>
+        <v-list-item v-if="isAdmin" to="/contents/sessions"> {{ $t("frontend.contents.sessions.title") }} </v-list-item>
         <v-divider></v-divider>
         <template v-if="isAdmin">
           <v-list-subheader>Accounts</v-list-subheader>

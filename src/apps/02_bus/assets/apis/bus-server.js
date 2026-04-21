@@ -382,6 +382,51 @@ const $server = {
       }));
     },
   },
+  /////////////////////////////////////
+  //
+  /////////////////////////////////////
+  sessions: {
+    search(data, params) {
+      return $server.api
+        .execute((e) => ({
+          method: "POST",
+          url: $server.api.url(e, "/rest/sessions/search"),
+          headers: $server.api.headers(e, {}),
+          params: $server.api.pageable(params),
+          data: data,
+        }));
+    },
+    create(data) {
+      return $server.api.execute((e) => ({
+        method: "POST",
+        url: $server.api.url(e, "/rest/sessions"),
+        headers: $server.api.headers(e, {}),
+        data: data,
+      }));
+    },
+    read(data) {
+      return $server.api.execute((e) => ({
+        method: "POST",
+        url: data._links.self.href,
+        headers: $server.api.headers(e, {}),
+      }));
+    },
+    update(data) {
+      return $server.api.execute((e) => ({
+        method: "PUT",
+        url: data._links.self.href,
+        headers: $server.api.headers(e, {}),
+        data: data,
+      }));
+    },
+    delete(data) {
+      return $server.api.execute((e) => ({
+        method: "DELETE",
+        url: data._links.self.href,
+        headers: $server.api.headers(e, {}),
+      }));
+    },
+  },
 };
 
 export default $server;
