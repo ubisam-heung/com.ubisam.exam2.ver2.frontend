@@ -146,10 +146,10 @@
 
              <entity-field
                 class="ma-2"
-                v-model="selectedBusStops"
+                v-model="editForm.busStopsLinks"
                 :rules="[$rules.requried]"
                 :items="busStopsItems"
-               :item-selected="editForm.busStops"
+                :item-selected="editForm.busStops"
                 :item-title="busStopsItemsTitle"
                 :item-value="busStopsItemsValue"
                 :loading="busStopsItemsLoading"
@@ -216,7 +216,6 @@ export default {
 
     entities: [],
     entitiesTotal: 0,
-    selectedBusStops: [],
 
     config: {
       searchBy: "",
@@ -303,13 +302,13 @@ export default {
     // handle....
     ////////////////////////////////////////
     handleCreate(){
-      return $busServer.busRoutes.create(this.handlePayload());
+      return $busServer.busRoutes.create(this.editForm);
     },
     handleRead(entity){
       return $busServer.busRoutes.read(entity);
     },
     handleUpdate(){
-      return $busServer.busRoutes.update(this.handlePayload());
+      return $busServer.busRoutes.update(this.editForm);
     },
     handleDelete(){
       return $busServer.busRoutes.delete(this.editForm);
@@ -324,18 +323,8 @@ export default {
     },
     handleEntity(res){
       this.editForm = res ? res : Object.assign({}, this.config.initForm);
-      this.selectedBusStops = this.editForm.busStops ? [...this.editForm.busStops] : [];
       return res;
     },
-    handlePayload() {
-      return {
-        ...this.editForm,
-        busStopsId: this.selectedBusStops.map((item) => item.id),
-      };
-    },
-
-
-
 
     ////////////////////////////////////////
     //

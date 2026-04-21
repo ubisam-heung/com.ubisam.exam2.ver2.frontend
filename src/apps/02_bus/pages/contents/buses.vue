@@ -141,7 +141,7 @@
 
              <entity-field
                 class="ma-2"
-                v-model="selectedBusRoute"
+                v-model="editForm.busRouteLink"
                 :rules="[$rules.requried]"
                 :items="busRouteItems"
                 :item-selected="editForm.busRoute"
@@ -159,10 +159,10 @@
 
               <entity-field
                 class="ma-2"
-                v-model="selectedBusDriver"
+                v-model="editForm.busDriverLink"
                 :rules="[$rules.requried]"
                 :items="busDriverItems"
-               :item-selected="editForm.busDriver"
+                :item-selected="editForm.busDriver"
                 :item-title="busDriverItemsTitle"
                 :item-value="busDriverItemsValue"
                 :loading="busDriverItemsLoading"
@@ -238,8 +238,6 @@ export default {
 
     entities: [],
     entitiesTotal: 0,
-    selectedBusRoute: undefined,
-    selectedBusDriver: undefined,
 
     config: {
       searchBy: "",
@@ -350,13 +348,13 @@ export default {
     // handle....
     ////////////////////////////////////////
     handleCreate(){
-      return $busServer.buses.create(this.handlePayload());
+      return $busServer.buses.create(this.editForm);
     },
     handleRead(entity){
       return $busServer.buses.read(entity);
     },
     handleUpdate(){
-      return $busServer.buses.update(this.handlePayload());
+      return $busServer.buses.update(this.editForm);
     },
     handleDelete(){
       return $busServer.buses.delete(this.editForm);
@@ -371,16 +369,7 @@ export default {
     },
     handleEntity(res){
       this.editForm = res ? res : Object.assign({}, this.config.initForm);
-      this.selectedBusRoute = this.editForm.busRoute;
-      this.selectedBusDriver = this.editForm.busDriver;
       return res;
-    },
-    handlePayload() {
-      return {
-        ...this.editForm,
-        busRouteId: this.selectedBusRoute ? this.selectedBusRoute.id : undefined,
-        busDriverId: this.selectedBusDriver ? this.selectedBusDriver.id : undefined,
-      };
     },
 
     ////////////////////////////////////////
