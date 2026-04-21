@@ -2,7 +2,7 @@
   <v-container class="pa-4" fluid>
     <v-card>
       <v-card-title class="d-flex align-center pe-2">
-        <v-icon icon="mdi-video-input-component"></v-icon> &nbsp;
+        <v-icon icon="mdi-bus-stop"></v-icon> &nbsp;
         {{ $t("frontend.contents.busStops.title") }}&nbsp;
         <!-- 
         ///////////////////////////
