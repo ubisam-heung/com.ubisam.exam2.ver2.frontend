@@ -389,7 +389,9 @@ export default {
       })
       .then((r) => {
         console.log(x, "mountedX()", 3, r);
-        this.refreshAction();
+        setTimeout(() => {
+          this.refreshAction();
+        }, 100);
       });
   
   },
